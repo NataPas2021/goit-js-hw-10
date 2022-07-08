@@ -1,6 +1,6 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
-import { Notify } from "notiflix";
+//import { Notify } from "notiflix";
 import { fetchCountry } from './js/fetchcountry';
 import {renderCountryList, renderCountryInfo} from './js/markups';
 import {alertTooManyMatches, alertNoSuchCountry} from './js/alertsNotifications';
@@ -33,17 +33,11 @@ function onInputCountryName() {
             const listMarkup = countries.map(country => renderCountryList(country));
             listOFCountries.innerHTML = listMarkup.join('');
     
-           //listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(country));
         }
 
         if (countries.length === 1) {
             const markupInfo = countries.map(country => renderCountryInfo(country));
-            console.log(markupInfo)
-            countryInfoContainer.innerHTML = markupInfo;
-            
-            
-            //listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(countries));
-            //countryInfoContainer.insertAdjacentHTML('beforeend',renderCountryInfo(country));
+            countryInfoContainer.innerHTML = markupInfo.join('');
         } 
       })
       .catch(alertNoSuchCountry);

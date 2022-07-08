@@ -1,5 +1,5 @@
 export const fetchCountry = name => {
-    return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,currencies,population,flags`).then(response => {
+    return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,currencies,population,flags,languages`).then(response => {
        if(!response.ok) {
         throw new Error(response.statusText);
        }
@@ -8,3 +8,4 @@ export const fetchCountry = name => {
  };
 
  
+console.log(fetchCountry('peru'))
