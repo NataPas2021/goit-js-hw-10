@@ -13,16 +13,22 @@ export function renderCountryList(countries) {
   }
   
 export function renderCountryInfo(countries) {
-    const markup = countries
+    const markupInfo = countries
       .map(({ capital, population, languages }) => {
         return `
-          <ul class="country-info__list">
-              <li class="country-info__item"><p><b>Capital: </b>${capital}</p></li>
-              <li class="country-info__item"><p><b>Population: </b>${population}</p></li>
-              <li class="country-info__item"><p><b>Languages: </b>${Object.values(languages).join(', ')}</p></li>
-          </ul>
-          `
+        <div class="country-info__container">
+        <div class="country-info__wrapper">
+          <img class="country-info__flags" src="${flags.svg}" alt="${name.official}" width="50" />
+          <h2 class="country-info__name">${name.official}</h2>
+        </div>
+        <p class="country-info__capital"><span class="country-info__weight">Capital:</span> ${capital}</p>
+        <p class="country-info__population"><span class="country-info__weight">Population:</span> ${population}</p>
+        <p class="country-info__languages"><span class="country-info__weight">Languages:</span> ${Object.values(
+          languages,
+        )}</p>
+      </div>
+    `
       })
       .join('')
-    return markup;
+    return markupInfo;
   }

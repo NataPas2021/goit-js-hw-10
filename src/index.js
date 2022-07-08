@@ -16,21 +16,28 @@ searchBox.addEventListener('input', debounce(onInputCountryName, DEBOUNCE_DELAY)
 function onInputCountryName() {
     const name = searchBox.value.trim()
     if (name === '') {
-      return (listOFCountries.innerHTML = ''), (countryInfoContainer.innerHTML = '');
+       listOFCountries.innerHTML = '';
+       countryInfoContainer.innerHTML = '';
+       return;
     }
   
     fetchCountry(name)
       .then(countries => {
         listOFCountries.innerHTML = '';
         countryInfoContainer.innerHTML = '';
-        if (countries.length === 1) {
-          listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(countries));
-          countryInfoContainer.insertAdjacentHTML('beforeend', renderCountryInfo(countries));
-        } else if (countries.length >= 10) {
-          alertTooManyMatches();
-        } else {
-          listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(countries));
+        if (countries.length > 10) {
+            alertTooManyMatches();
+        } 
+
+        if (countries.length > 2 && countries.length <= 10) {
+           listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(countries));
         }
+
+        if (countries.length === 1) {
+            listOFCountries.innerHTML = '';
+            //listOFCountries.insertAdjacentHTML('beforeend', renderCountryList(countries));
+            countryInfoContainer.insertAdjacentHTML('beforeend',renderCountryInfo(countries));
+        } 
       })
       .catch(alertNoSuchCountry);
   };  
