@@ -7,8 +7,7 @@ export function renderCountryList({ name, flags }) {
         `
 }
 
-export function renderCountryInfo(country) {
-    const  { name, flags, capital, population, languages } = country;
+export function renderCountryInfo({ name, flags, capital, population, languages }) {
     return `
     <div class="country-info__container">
         <div class="country-info__wrapper">
